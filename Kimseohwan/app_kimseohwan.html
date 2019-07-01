@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
+        <title>A</title>
+    </head>
+    <body>
+        <input id="firstblank" type="text">
+        <input id="secondblank" type="text">
+        <input id="okay" type="submit" value="sum">
+        <h1 id="output"></h1>
+        <script>
+            const first = $("#firstblank");
+            const second = $("#secondblank");
+            const button = $("#okay");
+            const output = $("#output");
+
+            button.click(function(){
+                var fv = parseInt(first.val());
+                var sv = parseInt(second.val());
+                output.html((fv + sv)+"");
+            })
+        </script>
+    </body>
+</html>
