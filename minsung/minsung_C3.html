@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="//code.jquery.com/jquery-3.2.1.min.js"> </script>
+        <title>Operate One InputBox</title>
+    </head>
+    <body>
+            <input id="box" type="text">
+            <input id="okay" type="submit" value="OK">
+            <h1 id="output"></h1>
+            <script>
+                const box = $("#box");
+                const btn = $("#okay");
+                const output = $("#output");
+    
+                btn.click(function(){
+                    var result = eval(box.val()); //문자열을 수식으로 바꿔주는 내장함수
+                    output.html(result);
+                })
+            </script>
+        </body>
+</html>
