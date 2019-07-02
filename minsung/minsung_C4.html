@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="//code.jquery.com/jquery-3.2.1.min.js"> </script>
+        <title>Calculator</title>
+        <style>
+                table {
+                    border-collapse: collapse;
+                }
+                td {
+                    padding: 5px 10px;
+                    text-align: center;
+                }
+                input {
+                    text-align: right;
+                    border: none;
+                }
+                input:focus {
+                    outline: none;
+                }
+            </style>
+    </head>
+    <body>
+        <table border="1" >
+            <tbody id="calc">
+                <tr>
+                    <td colspan="4">
+                        <input type="text" id="display" placeholder="Input Here...">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <input type="text" id="result" placeholder="Result..." readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" id="init">AC</td>
+                    <td id="backspace">≪</td>
+                    <td id="exe">=</td>
+                    
+                </tr>
+                <tr class="insert">
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>/</td>
+                </tr>
+                <tr class="insert">
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>*</td>
+                </tr>
+                <tr class="insert">
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>-</td>
+                </tr>
+                <tr class="insert">
+                    <td colspan="2">0</td>
+                    <td>.</td>
+                    <td>+</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <script>
+            const calc = $("#calc"); // 전체 표
+            const display = $("#display"); // 입력창
+            const result = $("#result"); // 결과창
+            const btns = calc.children(".insert").children(); // 숫자와 연산자
+            const exe = $("#exe"); // =
+            const init = $("#init"); //AC
+            const bs = $("#backspace"); // ≪
+
+            function execute(){ // 실행 함수
+                let expr = display.val(); // 수식 뽑아내기
+                try{ // 수식의 오류를 가정
+                    result.val(eval(expr)); // 문자열을 수식으로 바꿔주는 내장함수
+                } catch (e){
+                    result.val("ERROR!");
+                }
+            }
+            btns.click(function(){ // 숫자와 연산자 버튼 구현
+                display.val(display.val() + $(this).html()); // 자신을 가리키는 this
+            });
+
+            init.click(function(){ // 초기화 버튼 구현
+                display.val("");
+                result.val("");
+            });
+
+            exe.click(execute); // = 버튼 구현
+            display.keyup(function(event){ // display에서 Enter버튼을 눌렀을 때
+                if(event.keyCode === 13){ // Enter버튼의 키코드 : 13
+                    execute();
+                }
+            });
+
+            bs.click(function(){ // 백스페이스 버튼 구현
+                display.val(display.val().slice(0,-1)); //slice(start, end) 자르기
+            });
+        </script>
+    </body>
+</html>
