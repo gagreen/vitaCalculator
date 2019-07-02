@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src = "//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <title>A</title>
+    </head>
+    <body>
+        <input id = "blank" type = "text">
+        <input id = "Calc" type = "submit" value = "Calc">
+        <h1 id ="output"></h1>
+        <script>
+            const blank = $("#blank");
+            const button = $("#Calc");
+            const output = $("#output");
+
+            button.click(function(){
+                var res = eval(blank.val());
+                output.html(res);
+            })
+        
+        </script>
+
+    </body>
+</html>
